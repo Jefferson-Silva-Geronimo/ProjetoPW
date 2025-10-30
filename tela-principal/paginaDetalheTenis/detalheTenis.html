@@ -32,8 +32,6 @@
       <span></span>
       <span></span>
     </div>
-
-    <a href="../paginaCarrinho/carrinho.html" class="btn">Comprar Agora</a>
   </header>
 
   <!-- Produto Detalhe -->
@@ -41,16 +39,14 @@
     <div class="container">
       <!-- Imagem -->
       <div class="imagem-produto">
-        <img src="../../img-tenis/tipo-tenis-5.jpg" alt="Nike Dunk Low">
+        <img src="../../img-tenis/tipo-tenis-1.jpg" alt="Produto">
       </div>
 
       <!-- Informações -->
       <div class="info-produto">
-        <h2>Nike Dunk Low</h2>
-        <p class="descricao">
-          Inspirado na cultura streetwear, este tênis combina conforto e estilo. Ideal para o dia a dia ou ocasiões especiais.
-        </p>
-        <p class="preco">R$ 899,90</p>
+        <h2>Produto</h2>
+        <p class="descricao">Descrição do produto</p>
+        <p class="preco">R$ 0,00</p>
 
         <!-- Seleção de tamanho -->
         <label for="tamanho">Tamanho:</label>
@@ -69,7 +65,7 @@
 
         <!-- Botões -->
         <div class="botoes-produto">
-          <a href="../paginaCarrinho/carrinho.html" class="btn">Adicionar ao Carrinho</a>
+          <button class="btn" id="btnAdicionarCarrinho">Adicionar ao Carrinho</button>
           <a href="../paginaDeColecoes/colecoes.html" class="btn secundario">Continuar Comprando</a>
         </div>
 
@@ -87,17 +83,11 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Hype Dunk. Todos os direitos reservados.</p>
   </footer>
 
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('nav ul');
-    hamburger.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-  </script>
+  <!-- JS -->
+  <script src="detalheTenis.js"></script>
 </body>
 </html>

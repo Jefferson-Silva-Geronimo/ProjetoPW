@@ -139,24 +139,6 @@
     <p>&copy; 2025 Hype Dunk. Todos os direitos reservados.</p>
   </footer>
 
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    function abrirColecao(id) {
-      document.querySelector('.colecoes-lista').style.display = "none";
-      document.querySelectorAll('.colecao-detalhe').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-
-    function voltar() {
-      document.querySelector('.colecoes-lista').style.display = "block";
-      document.querySelectorAll('.colecao-detalhe').forEach(sec => sec.classList.remove('active'));
-    }
-  </script>
+  <script src="detalheColecao.js"></script>
 </body>
 </html>

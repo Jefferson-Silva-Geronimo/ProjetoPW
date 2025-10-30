@@ -1,17 +1,15 @@
-const produtos = [
-  { nome: "Nike Dunk Low", preco: 899.9 },
-  { nome: "Air Jordan 1", preco: 1299.9 },
-  { nome: "Nike Air Force", preco: 799.9 },
-  { nome: "Nike Dunk Low", preco: 899.9 },
-  { nome: "Air Jordan 1", preco: 1299.9 },
-  { nome: "Nike Air Force", preco: 799.9 }
-];
-
 // Caminhos das imagens intercaladas
 const imagens = [
   "../../img-tenis/tipo-tenis-1.jpg",
   "../../img-tenis/tipo-tenis-2.jpg",
   "../../img-tenis/tipo-tenis-3.jpg"
+];
+
+// Carrega produtos do localStorage ou cria padrão
+let produtos = JSON.parse(localStorage.getItem("produtos")) || [
+  { nome: "Nike Dunk Low", preco: 899.9 },
+  { nome: "Air Jordan 1", preco: 1299.9 },
+  { nome: "Nike Air Force", preco: 799.9 }
 ];
 
 const grid = document.getElementById("grid-produtos");
@@ -22,6 +20,11 @@ const form = document.getElementById("produto-form");
 const modalTitle = document.getElementById("modal-title");
 
 let editIndex = null;
+
+// Função para salvar no localStorage
+function salvarLocalStorage() {
+  localStorage.setItem("produtos", JSON.stringify(produtos));
+}
 
 // Renderiza os produtos
 function renderProdutos() {
@@ -43,24 +46,26 @@ function renderProdutos() {
     `;
     grid.appendChild(card);
 
-    // Botões
+    // Botão excluir
     card.querySelector(".btn-excluir").addEventListener("click", () => {
       produtos.splice(i, 1);
+      salvarLocalStorage();
       renderProdutos();
     });
 
+    // Botão editar
     card.querySelector(".btn-editar").addEventListener("click", () => {
       editIndex = i;
       modalTitle.textContent = "Editar Produto";
       form.nome.value = p.nome;
       form.preco.value = p.preco;
-      form.imagem.value = imagemSrc; // Mantém a imagem intercalada no modal
+      form.imagem.value = imagemSrc;
       modal.style.display = "block";
     });
   });
 }
 
-// Modal
+// Abrir modal para incluir novo produto
 btnIncluir.onclick = () => {
   editIndex = null;
   modalTitle.textContent = "Novo Produto";
@@ -68,10 +73,11 @@ btnIncluir.onclick = () => {
   modal.style.display = "block";
 };
 
+// Fechar modal
 closeModal.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; };
 
-// Salvar produto
+// Salvar produto (novo ou edição)
 form.onsubmit = (e) => {
   e.preventDefault();
   const novo = {
@@ -83,6 +89,7 @@ form.onsubmit = (e) => {
   } else {
     produtos.push(novo);
   }
+  salvarLocalStorage();
   modal.style.display = "none";
   renderProdutos();
 };
