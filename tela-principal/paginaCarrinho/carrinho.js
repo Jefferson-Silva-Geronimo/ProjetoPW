@@ -78,3 +78,11 @@ function renderCarrinho() {
 document.addEventListener('DOMContentLoaded', () => {
   renderCarrinho();
 });
+
+// Limpa o carrinho ao finalizar a compra
+const finalizarCompraBtn = document.querySelector('.finalizar');
+if (finalizarCompraBtn) {
+  finalizarCompraBtn.addEventListener('click', () => {
+    localStorage.removeItem('carrinho'); // 🧹 Apaga todos os itens do carrinho
+  });
+}
